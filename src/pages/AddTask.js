@@ -9,6 +9,8 @@ import {withRouter} from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Routes, Route,useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FallingLines,Bars ,Grid,Oval,ThreeCircles} from 'react-loader-spinner'
+
 
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
