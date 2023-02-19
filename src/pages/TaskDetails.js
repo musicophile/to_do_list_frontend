@@ -61,7 +61,6 @@ const TaskDetails = () => {
     <div class="container">
 {data.map(d => (
   <div className="Auth-form-container">
-  <form className="Auth-form">
     <div className="Auth-form-content">
       <h3 className="Auth-form-title text-center">Task Details</h3>
       <div class="card" >
@@ -87,7 +86,7 @@ const TaskDetails = () => {
    
   
     </div>
-  </form>
+    <a href="/"  type="button" class="btn btn-outline-warning  m-1">Back</a>
 </div>
 )) 
 }
