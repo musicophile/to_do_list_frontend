@@ -58,7 +58,7 @@ const Invite = () => {
  
     emailjs.send(
       'service_p31kmpu', 'template_5z6cxiu',
-      {message_html: 'Test Invitation', from_name: 'To-do', reply_to: 'feusebius1710@gmail.com'},'CkrwYIDAgsKZBvekT'
+      {message_html: 'Test Invitation', from_name: 'To-do', reply_to: email},'CkrwYIDAgsKZBvekT'
       ).then(res => {
         console.log('Email successfully sent!')
       })
