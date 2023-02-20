@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import { FallingLines,Bars ,Grid,Oval,ThreeCircles} from 'react-loader-spinner'
+
 
 export default function Register() {
   // initial state
@@ -9,8 +11,12 @@ export default function Register() {
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
   const [register, setRegister] = useState(false);
+  const [loading, setLoading] = useState(false);
+
 
   const handleSubmit = (e) => {
+    setLoading(true);
+
     // prevent the form from refreshing the whole page
     e.preventDefault();
 
@@ -30,9 +36,13 @@ export default function Register() {
     axios(configuration)
       .then((result) => {
         setRegister(true);
+        setLoading(false);
+
         window.location.href = "/login";
       })
       .catch((error) => {
+        setLoading(false);
+
         error = new Error();
       });
   };
@@ -126,6 +136,28 @@ export default function Register() {
           </div>
           <div class="col-md-3"></div>
         </div>
+
+               
+{loading == true?
+        <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 d-flex justify-content-center">
+
+ 
+<ThreeCircles
+  height="100"
+  width="100"
+  color="#4fa94d"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+  ariaLabel="three-circles-rotating"
+  outerCircleColor=""
+  innerCircleColor=""
+  middleCircleColor=""
+/>
+ </div>
+          <div class="col-md-3"></div> </div>:<div></div>}
         {/* display success message */}
         {/* {register ? (
           <p className="text-success">You Are Registered Successfully</p>
