@@ -20,6 +20,8 @@ const Home = () => {
   const [inviteData, setInviteData] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState("");
+
 
   // prevent the form from refreshing the whole page
   // event.preventDefault();
@@ -96,6 +98,61 @@ const Home = () => {
   window.location.href = "/taskDetails";
   }
 
+  const handleSubmitStatus = (event,taskId,taskemail,status_) => {
+    event.preventDefault();
+    // const taskId = taskId; // replace with actual task ID
+    // const taskemail = taskemail; // replace with actual task email
+    let newstatus = "";
+    console.log(status_);
+    if (status_ === "Complete") {
+      newstatus = "Incomplete";
+    } else {
+      newstatus = "Complete";
+    }
+    console.log(newstatus);
+    const statusConfiguration = {
+      method: "post",
+      url: "https://vivacious-cod-capris.cyclic.app/updateTaskStatus",
+      data: {
+        taskId,
+        taskemail,
+        newstatus
+      },
+    };
+    axios(statusConfiguration)
+      .then((result) => {
+        console.log(result.data.result);
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    // const configuration = {
+    //   method: "post",
+    //   url: "https://vivacious-cod-capris.cyclic.app/editTaskStatus",
+    //   data: {
+    //     taskId,
+    //     taskemail,
+    //     status,
+    //   },
+    // };
+
+    // // make the API call
+    // axios(configuration)
+    //   .then((result) => {
+    //     console.log(result.data.result);
+    //     setLoading(false);
+    //     window.location.href = "/";
+
+    //   })
+    //   .catch((error) => {
+    //     setLoading(false);
+    //     error = new Error();
+    //     console.log(error);
+    //   });
+  // window.location.href = "/taskDetails";
+  }
+
   const collaborator = (event) => {
     event.preventDefault();
   window.location.href = "/collaborator";
@@ -140,6 +197,8 @@ data.map(d => (
       <a href="#"  onClick={(e) => handleSubmitInvite(e,d.id,d.taskname)}  type="button" class="btn btn-outline-primary  m-1">Invite</a>
       
       <a href="#" onClick={(e) => handleSubmitView(e,d.id,d.email)} type="button" class="btn btn-outline-warning  m-1">View</a>
+      { d.status == "Complete" ? <a href="#" onClick={(e) => handleSubmitStatus(e,d.id,d.email,d.status)} type="button" class="btn btn-success  m-1">{d.status}</a>:
+      <a href="#" onClick={(e) => handleSubmitStatus(e,d.id,d.email,d.status)} type="button" class="btn btn-warning  m-1">{d.status}</a> }
           </div>
       </div>
       
