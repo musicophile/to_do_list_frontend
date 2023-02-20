@@ -12,6 +12,8 @@ const cookies = new Cookies();
 
 // get token generated on login
 const c_email = cookies.get("email");
+const name = cookies.get("name");
+
 const taskId = cookies.get("taskId");
 const taskname = cookies.get("taskname");
 
@@ -23,6 +25,7 @@ const history = createBrowserHistory();
 const Invite = () => {
   // const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,7 +61,7 @@ const Invite = () => {
  
     emailjs.send(
       'service_p31kmpu', 'template_5z6cxiu',
-      {message_html: 'Test Invitation', from_name: 'To-do', reply_to: email},'CkrwYIDAgsKZBvekT'
+      {message: 'Your Invited to colaborate on this task : '+taskname +", Open this link to register: https://to-do-list-frontend-neon.vercel.app/ ",  from_name: name, reply_to: email},'CkrwYIDAgsKZBvekT'
       ).then(res => {
         console.log('Email successfully sent!')
       })
