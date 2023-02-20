@@ -5,6 +5,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import { FallingLines,Bars ,Grid,Oval,ThreeCircles} from 'react-loader-spinner'
+import { Form, Button, Select } from "react-bootstrap";
 
 const cookies = new Cookies();
 
@@ -22,11 +23,62 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState("");
 
+  const [search, setSearch] = useState("");
+
 
   // prevent the form from refreshing the whole page
   // event.preventDefault();
   const email = cookies.get("email");
   if( data == ""){
+    console.log("testseacrh");
+console.log(search);
+    if(search != ""){
+    const configuration = {
+      method: "post",
+      url: "https://vivacious-cod-capris.cyclic.app/fetchTaskBysearch",
+      data: {
+        email,
+        search,
+      },
+    };
+    
+    axios(configuration)
+    .then((result) => { 
+      console.log(result.data.result);
+      console.log(email);
+      setData(result.data.result);
+      setLoading(false);
+      cookies.set("search", "");
+
+ 
+    })
+    .catch((error) => {
+      error = new Error();
+      setLoading(false);
+      cookies.set("search", "");
+    });
+
+    const inviteConfiguration = {
+      method: "post",
+      url: "https://vivacious-cod-capris.cyclic.app/fetchInviteTaskBysearch",
+      data: {
+        email,
+        search,
+      },
+    };
+    
+    axios(inviteConfiguration)
+    .then((result) => { 
+      console.log(result.data.result);
+      
+      setInviteData(result.data.result);
+ 
+    })
+    .catch((error) => {
+      error = new Error();
+    });
+  }else{
+    console.log("testseacrhnosearch");
     const configuration = {
       method: "post",
       url: "https://vivacious-cod-capris.cyclic.app/fetchTask",
@@ -48,7 +100,7 @@ const Home = () => {
       setLoading(false);
     });
 
-    const inviteConfiguration = {
+    const invitesConfiguration = {
       method: "post",
       url: "https://vivacious-cod-capris.cyclic.app/fetchInviteTask",
       data: {
@@ -56,7 +108,7 @@ const Home = () => {
       },
     };
     
-    axios(inviteConfiguration)
+    axios(invitesConfiguration)
     .then((result) => { 
       console.log(result.data.result);
       
@@ -66,6 +118,7 @@ const Home = () => {
     .catch((error) => {
       error = new Error();
     });
+  }
     
   }
 
@@ -127,30 +180,7 @@ const Home = () => {
       .catch((error) => {
         console.error(error);
       });
-    // const configuration = {
-    //   method: "post",
-    //   url: "https://vivacious-cod-capris.cyclic.app/editTaskStatus",
-    //   data: {
-    //     taskId,
-    //     taskemail,
-    //     status,
-    //   },
-    // };
-
-    // // make the API call
-    // axios(configuration)
-    //   .then((result) => {
-    //     console.log(result.data.result);
-    //     setLoading(false);
-    //     window.location.href = "/";
-
-    //   })
-    //   .catch((error) => {
-    //     setLoading(false);
-    //     error = new Error();
-    //     console.log(error);
-    //   });
-  // window.location.href = "/taskDetails";
+   
   }
 
   const collaborator = (event) => {
@@ -159,8 +189,10 @@ const Home = () => {
   }
    const handleSubmitSearch = (event) => {
     event.preventDefault();
-    alert("Work on Progress, Expected to be completed by the end of today");
+    cookies.set("search", search);
+    window.location.href = "/";
   }
+
 
     return ( 
         <>
@@ -172,16 +204,21 @@ const Home = () => {
 <div class="col-md-6 mt-1"><p class="float-start">
 <a href="addTask" type="button" class="btn btn-outline-primary">Add Task</a>
     </p></div>  
+   
+
 <div class="col-md-6"><p class="float-end">
-    <form>
-           <div class="input-group ">
-  <input className="form-control mt-1" type="text" class="form-control" placeholder="Search Task" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+<Form onSubmit={(e) => handleSubmitSearch(e)}>   
+        <div class="input-group ">
+      
+  <input className="form-control mt-1" type="text" name="search" value={search} onChange={(e) => setSearch(e.target.value)}  class="form-control" placeholder="Search Task" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
   <div class="input-group-append">
     <button class="btn btn-outline-secondary" onClick={(e) => handleSubmitSearch(e)} type="button">Search</button>
   </div>
+
 </div>
-    </form>
+</Form>
     </p></div>  
+   
 </div>
 </div>
 <div class="container">
