@@ -114,29 +114,7 @@ export default function Login() {
         <div class="col-md-3"></div>
         <div class="col-md-6 d-flex justify-content-center">
 
-        {/* <Grid
-  height="80"
-  width="80"
-  color="#4fa94d"
-  ariaLabel="grid-loading"
-  radius="12.5"
-  wrapperStyle={{}}
-  wrapperClass=""
-  visible={true}
-/> */}
-{/* <Oval
-  height={80}
-  width={80}
-  color="#4fa94d"
-  wrapperStyle={{}}
-  wrapperClass=""
-  visible={true}
-  ariaLabel='oval-loading'
-  secondaryColor="#4fa94d"
-  strokeWidth={2}
-  strokeWidthSecondary={2}
-
-/> */}
+ 
 <ThreeCircles
   height="100"
   width="100"

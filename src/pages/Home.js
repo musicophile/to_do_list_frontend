@@ -157,6 +157,10 @@ const Home = () => {
     event.preventDefault();
   window.location.href = "/collaborator";
   }
+   const handleSubmitSearch = (event) => {
+    event.preventDefault();
+    alert("Work on Progress, Expected to be completed by the end of today");
+  }
 
     return ( 
         <>
@@ -173,7 +177,7 @@ const Home = () => {
            <div class="input-group ">
   <input className="form-control mt-1" type="text" class="form-control" placeholder="Search Task" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
   <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button">Search</button>
+    <button class="btn btn-outline-secondary" onClick={(e) => handleSubmitSearch(e)} type="button">Search</button>
   </div>
 </div>
     </form>
