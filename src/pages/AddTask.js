@@ -125,47 +125,7 @@ const AddTask = () => {
         </div>
       </Form>
     </>
-  {/* <div className="Auth-form-container">
-  <form className="Auth-form">
-    <div className="Auth-form-content">
-      <h3 className="Auth-form-title text-center">Register Task</h3>
-      <div className="text-center">
-    
-      </div>
-      <div className="form-group mt-3">
-        <label>Task</label>
-        <input
-          type="text"
-          className="form-control mt-1"
-          placeholder="e.g Jane Doe"
-        />
-      </div>
-      <div className="form-group mt-3">
-        <label>Description</label>
-        <input
-          type="text"
-          className="form-control mt-1"
-          placeholder="Description"
-        />
-      </div>
-      <div className="form-group mt-3">
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Select Priority</option>
-        <option value="1">High</option>
-        <option value="2">Moderate</option>
-        <option value="3">Low</option>
-        </select>
-      </div>
-     
-      <div className="d-grid gap-2 mt-3">
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </div>
-  
-    </div>
-  </form>
-</div> */}
+ 
 
 {
 loading == true?

@@ -8,6 +8,8 @@ import emailjs from 'emailjs-com';
 import axios from "axios";
 
 import Cookies from "universal-cookie";
+import { FallingLines,Bars ,Grid,Oval,ThreeCircles} from 'react-loader-spinner'
+
 const cookies = new Cookies();
 
 // get token generated on login
@@ -25,9 +27,13 @@ const history = createBrowserHistory();
 const Invite = () => {
   // const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
   
 
   const handleSubmit = (event) => {
+    setLoading(true);
+
     event.preventDefault();
 
     const date = new Date();
@@ -51,11 +57,14 @@ const Invite = () => {
     // make the API call
     axios(configuration)
       .then((result) => {
-       
+        setLoading(false);
+
         window.location.href = "/";
 
       })
       .catch((error) => {
+        setLoading(false);
+
         error = new Error();
       });
  
@@ -102,6 +111,27 @@ const Invite = () => {
 
       
       </Form>
+      {
+loading == true?
+        <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 d-flex justify-content-center">
+
+  
+<ThreeCircles
+  height="100"
+  width="100"
+  color="#4fa94d"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+  ariaLabel="three-circles-rotating"
+  outerCircleColor=""
+  innerCircleColor=""
+  middleCircleColor=""
+/>
+ </div>
+          <div class="col-md-3"></div> </div>:<div></div>}
     </>
     );
 };
