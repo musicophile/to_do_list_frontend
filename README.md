@@ -1,5 +1,5 @@
 To do list applications
-
+#How to use the application
 - Register by using email via a register button
 - Login by using your email and password
 - Create task by using Add task button
